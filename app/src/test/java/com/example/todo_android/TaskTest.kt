@@ -1,5 +1,6 @@
 package com.example.todo_android
 
+import com.productive.taskly.domain.model.Task
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
