@@ -63,6 +63,8 @@ dependencies {
     implementation(libs.androidx.material3)
 
     // 테스트 의존성
+    implementation("com.google.dagger:hilt-android:2.50")
+    kapt("com.google.dagger:hilt-compiler:2.50")
     testImplementation(libs.junit)
 
     // 안드로이드 디폴트 테스트 의존성
