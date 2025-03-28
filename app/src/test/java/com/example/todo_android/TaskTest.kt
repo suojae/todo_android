@@ -1,4 +1,4 @@
-package com.productive.taskly.domain.model
+package com.example.todo_android
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
