@@ -1,6 +1,6 @@
-import com.example.todo_android.GetTasksUseCase
 import com.productive.taskly.domain.model.Task
 import com.productive.taskly.domain.repository.TaskRepository
+import com.productive.taskly.domain.usecase.GetTasksUseCase
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
@@ -44,7 +44,7 @@ class GetTasksUseCaseTest {
     }
 
     @Test
-    fun `Given there are tasks, When executed with ALL filter, Then return all tasks sorted by priority`() = runBlocking {
+    fun `Given there are tasks, When executed with ALL filter, Then return all tasks sorted by priority`(): Unit = runBlocking {
         // Given
         `when`(taskRepository.getAllTasks()).thenReturn(flowOf(allTasks))
 
@@ -58,7 +58,7 @@ class GetTasksUseCaseTest {
     }
 
     @Test
-    fun `Given there are active tasks, When executed with ACTIVE filter, Then return only active tasks`() = runBlocking {
+    fun `Given there are active tasks, When executed with ACTIVE filter, Then return only active tasks`(): Unit = runBlocking {
         // Given
         val activeTasks = listOf(task1, task2)
         `when`(taskRepository.getActiveTasks()).thenReturn(flowOf(activeTasks))
@@ -73,7 +73,7 @@ class GetTasksUseCaseTest {
     }
 
     @Test
-    fun `Given there are completed tasks, When executed with COMPLETED filter, Then return only completed tasks`() = runBlocking {
+    fun `Given there are completed tasks, When executed with COMPLETED filter, Then return only completed tasks`(): Unit = runBlocking {
         // Given
         val completedTasks = listOf(task3)
         `when`(taskRepository.getCompletedTasks()).thenReturn(flowOf(completedTasks))
