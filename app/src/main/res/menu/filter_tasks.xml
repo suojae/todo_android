@@ -3,34 +3,34 @@
 
     <item
         android:id="@+id/filter_all"
-        android:title="All Tasks" />
+        android:title="@string/filter_all" />
 
     <item
         android:id="@+id/filter_active"
-        android:title="Active Tasks" />
+        android:title="@string/filter_active" />
 
     <item
         android:id="@+id/filter_completed"
-        android:title="Completed Tasks" />
+        android:title="@string/filter_completed" />
 
     <item
         android:id="@+id/filter_high_priority"
-        android:title="High Priority" />
+        android:title="@string/filter_high_priority" />
 
     <item
         android:id="@+id/filter_medium_priority"
-        android:title="Medium Priority" />
+        android:title="@string/filter_medium_priority" />
 
     <item
         android:id="@+id/filter_low_priority"
-        android:title="Low Priority" />
+        android:title="@string/filter_low_priority" />
 
     <item
         android:id="@+id/filter_with_deadline"
-        android:title="With Deadline" />
+        android:title="@string/filter_with_deadline" />
 
     <item
         android:id="@+id/filter_overdue"
-        android:title="Overdue" />
+        android:title="@string/filter_overdue" />
 
 </menu>

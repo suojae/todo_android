@@ -109,7 +109,7 @@ class AddTaskFragment : Fragment() {
     private fun saveTask() {
         val title = etTitle.text.toString().trim()
         if (title.isEmpty()) {
-            etTitle.error = "Title is required"
+            etTitle.error = getString(R.string.title_required)
             return
         }
 
@@ -127,16 +127,16 @@ class AddTaskFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             btnSave.isEnabled = !isLoading
-            btnSave.text = if (isLoading) "Saving..." else "Save"
+            btnSave.text = if (isLoading) getString(R.string.saving) else getString(R.string.save_task)
         }
 
         viewModel.saveResult.observe(viewLifecycleOwner) { event ->
             event.getContentIfNotHandled()?.let { success ->
                 if (success) {
-                    Toast.makeText(requireContext(), "Task saved successfully!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getString(R.string.task_saved_successfully), Toast.LENGTH_SHORT).show()
                     requireActivity().onBackPressedDispatcher.onBackPressed()
                 } else {
-                    Toast.makeText(requireContext(), "Failed to save task", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getString(R.string.failed_to_save_task), Toast.LENGTH_SHORT).show()
                 }
             }
         }

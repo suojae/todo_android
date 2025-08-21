@@ -87,7 +87,7 @@
             android:background="?android:attr/selectableItemBackgroundBorderless"
             android:padding="8dp"
             android:src="@android:drawable/ic_menu_delete"
-            android:contentDescription="Delete task" />
+            android:contentDescription="@string/delete_task" />
 
     </LinearLayout>
 

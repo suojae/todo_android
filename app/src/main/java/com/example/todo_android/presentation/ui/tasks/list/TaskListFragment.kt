@@ -185,14 +185,14 @@ class TaskListFragment : Fragment() {
 
     private fun getFilterText(filter: GetTasksUseCase.Filter): String {
         return when (filter) {
-            GetTasksUseCase.Filter.ALL -> "All Tasks"
-            GetTasksUseCase.Filter.ACTIVE -> "Active Tasks"
-            GetTasksUseCase.Filter.COMPLETED -> "Completed Tasks"
-            GetTasksUseCase.Filter.HIGH_PRIORITY -> "High Priority Tasks"
-            GetTasksUseCase.Filter.MEDIUM_PRIORITY -> "Medium Priority Tasks"
-            GetTasksUseCase.Filter.LOW_PRIORITY -> "Low Priority Tasks"
-            GetTasksUseCase.Filter.WITH_DEADLINE -> "Tasks with Deadline"
-            GetTasksUseCase.Filter.OVERDUE -> "Overdue Tasks"
+            GetTasksUseCase.Filter.ALL -> getString(R.string.filter_all)
+            GetTasksUseCase.Filter.ACTIVE -> getString(R.string.filter_active)
+            GetTasksUseCase.Filter.COMPLETED -> getString(R.string.filter_completed)
+            GetTasksUseCase.Filter.HIGH_PRIORITY -> getString(R.string.filter_high_priority)
+            GetTasksUseCase.Filter.MEDIUM_PRIORITY -> getString(R.string.filter_medium_priority)
+            GetTasksUseCase.Filter.LOW_PRIORITY -> getString(R.string.filter_low_priority)
+            GetTasksUseCase.Filter.WITH_DEADLINE -> getString(R.string.filter_with_deadline)
+            GetTasksUseCase.Filter.OVERDUE -> getString(R.string.filter_overdue)
         }
     }
 }

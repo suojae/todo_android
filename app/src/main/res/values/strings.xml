@@ -1,3 +1,31 @@
 <resources>
-    <string name="app_name">todo_android</string>
+    <string name="app_name">Todo Android</string>
+    
+    <!-- Task List Screen -->
+    <string name="all_tasks">All Tasks</string>
+    <string name="empty_tasks_message">No tasks yet!\nTap + to add a new task</string>
+    <string name="add_new_task">Add new task</string>
+    
+    <!-- Filter Options -->
+    <string name="filter_all">All Tasks</string>
+    <string name="filter_active">Active Tasks</string>
+    <string name="filter_completed">Completed Tasks</string>
+    <string name="filter_high_priority">High Priority Tasks</string>
+    <string name="filter_medium_priority">Medium Priority Tasks</string>
+    <string name="filter_low_priority">Low Priority Tasks</string>
+    <string name="filter_with_deadline">Tasks with Deadline</string>
+    <string name="filter_overdue">Overdue Tasks</string>
+    
+    <!-- Add Task Screen -->
+    <string name="task_saved_successfully">Task saved successfully!</string>
+    <string name="failed_to_save_task">Failed to save task</string>
+    <string name="title_required">Title is required</string>
+    <string name="saving">Saving...</string>
+    <string name="save_task">Save</string>
+    
+    <!-- Common -->
+    <string name="cancel">Cancel</string>
+    <string name="delete_task">Delete task</string>
+    <string name="refresh">Refresh</string>
+    <string name="filter">Filter</string>
 </resources>
