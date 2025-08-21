@@ -1,6 +1,6 @@
-package com.productive.taskly.domain.repository
+package com.example.todo_android.domain.repository
 
-import com.productive.taskly.domain.model.Task
+import com.example.todo_android.domain.model.Task
 import kotlinx.coroutines.flow.Flow
 
 interface TaskRepository {

@@ -1,7 +1,7 @@
-package com.productive.taskly.domain.usecase
+package com.example.todo_android.domain.usecase
 
-import com.productive.taskly.domain.model.Task
-import com.productive.taskly.domain.repository.TaskRepository
+import com.example.todo_android.domain.model.Task
+import com.example.todo_android.domain.repository.TaskRepository
 import java.util.Date
 import javax.inject.Inject
 
