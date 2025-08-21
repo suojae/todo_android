@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("kotlin-kapt")
+    id("com.google.devtools.ksp") version "1.9.20-1.0.14"
     id("dagger.hilt.android.plugin")
 }
 
@@ -40,10 +40,10 @@ android {
     }
     buildFeatures {
         compose = true
-        viewBinding = true
+        viewBinding = false
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.5"
     }
     packaging {
         resources {
@@ -62,9 +62,40 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
-    // 테스트 의존성
+    // Hilt 의존성 주입
     implementation("com.google.dagger:hilt-android:2.50")
-    kapt("com.google.dagger:hilt-compiler:2.50")
+    ksp("com.google.dagger:hilt-compiler:2.50")
+    
+    // Room 데이터베이스
+    implementation("androidx.room:room-runtime:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
+    ksp("androidx.room:room-compiler:2.6.1")
+    
+    // RecyclerView
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+    
+    // Material Design
+    implementation("com.google.android.material:material:1.11.0")
+    
+    // CardView
+    implementation("androidx.cardview:cardview:1.0.0")
+    
+    // SwipeRefreshLayout
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    
+    // Navigation Component
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.6")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.6")
+    
+    // ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
+    
+    // Fragment
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
+    
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
     testImplementation("org.mockito:mockito-core:5.8.0")
     testImplementation("org.mockito.kotlin:mockito-kotlin:5.2.1")
     testImplementation(libs.junit)
