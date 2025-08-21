@@ -10,9 +10,11 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -51,7 +53,27 @@ class TaskListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setHasOptionsMenu(true)
+        
+        // 새로운 MenuProvider API 사용
+        requireActivity().addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.tasks_menu, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return when (menuItem.itemId) {
+                    R.id.menu_filter -> {
+                        showFilteringPopUpMenu()
+                        true
+                    }
+                    R.id.menu_refresh -> {
+                        viewModel.loadTasks(viewModel.currentFilter.value!!)
+                        true
+                    }
+                    else -> false
+                }
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
         
         initViews(view)
         setupRecyclerView()
@@ -68,23 +90,7 @@ class TaskListFragment : Fragment() {
         swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.tasks_menu, menu)
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.menu_filter -> {
-                showFilteringPopUpMenu()
-                true
-            }
-            R.id.menu_refresh -> {
-                viewModel.loadTasks(viewModel.currentFilter.value!!)
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
 
     private fun setupRecyclerView() {
         tasksAdapter = TasksAdapter(
@@ -103,24 +109,32 @@ class TaskListFragment : Fragment() {
     private fun setupObservers() {
         // 태스크 목록 관찰
         viewModel.tasks.observe(viewLifecycleOwner) { tasks ->
-            tasksAdapter.submitList(tasks)
-            tvEmptyState.isVisible = tasks.isEmpty()
+            tasks?.let {
+                tasksAdapter.submitList(it)
+                tvEmptyState.isVisible = it.isEmpty()
+            }
         }
 
         // 로딩 상태 관찰
         viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
-            progressBar.isVisible = isLoading
+            isLoading?.let {
+                progressBar.isVisible = it
+            }
         }
 
         // 현재 필터 관찰
         viewModel.currentFilter.observe(viewLifecycleOwner) { filter ->
-            tvCurrentFilter.text = getFilterText(filter)
+            filter?.let {
+                tvCurrentFilter.text = getFilterText(it)
+            }
         }
 
         // 스낵바 메시지 관찰
         viewModel.snackbarMessage.observe(viewLifecycleOwner) { event ->
-            event.getContentIfNotHandled()?.let { message ->
-                Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT).show()
+            event?.getContentIfNotHandled()?.let { message ->
+                if (isAdded && view != null) {
+                    Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT).show()
+                }
             }
         }
 

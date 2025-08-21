@@ -76,7 +76,7 @@ class AddTaskFragment : Fragment() {
         }
 
         btnCancel.setOnClickListener {
-            requireActivity().onBackPressed()
+            requireActivity().onBackPressedDispatcher.onBackPressed()
         }
     }
 
@@ -134,7 +134,7 @@ class AddTaskFragment : Fragment() {
             event.getContentIfNotHandled()?.let { success ->
                 if (success) {
                     Toast.makeText(requireContext(), "Task saved successfully!", Toast.LENGTH_SHORT).show()
-                    requireActivity().onBackPressed()
+                    requireActivity().onBackPressedDispatcher.onBackPressed()
                 } else {
                     Toast.makeText(requireContext(), "Failed to save task", Toast.LENGTH_SHORT).show()
                 }
